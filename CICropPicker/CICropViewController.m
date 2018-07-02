@@ -71,6 +71,7 @@
 #pragma mark - Private Methods
 
 - (void)_setupCropView{
+    
     float height = [[UIScreen mainScreen] bounds].size.height - TOOLBAR_HEIGHT + [[UIScreen mainScreen] bounds].origin.y;
 
     self.imageCropView = [[CICropImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
@@ -89,26 +90,24 @@
         default:
             break;
     }
-    self.imageCropView.clipsToBounds = YES;
+    self.imageCropView.clipsToBounds = YES;    
     [self.view addSubview:self.imageCropView];
-    
-    
 }
 
 - (void)_setupToolbar{
-    
-    float yPosition = self.view.bounds.size.height - TOOLBAR_HEIGHT;
-    
-    if ([UIApplication sharedApplication].statusBarFrame.size.height == 0) {
-        yPosition -= 20;
-    }else if([UIApplication sharedApplication].statusBarFrame.size.height == 40){
-        yPosition += 20;
+    float paddingBottom = 0;
+    if(@available(iOS 11, *)){
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        paddingBottom = window.safeAreaInsets.bottom;
     }
+    
     self.toolbarView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                self.imageCropView.frame.size.height,
+                                                                self.view.frame.size.height - paddingBottom - TOOLBAR_HEIGHT,
                                                                 self.view.frame.size.width,
-                                                                TOOLBAR_HEIGHT)];
+                                                                TOOLBAR_HEIGHT + paddingBottom)];
+    
     self.toolbarView.backgroundColor = [UIColor colorWithRed:23./255. green:23./255. blue:23./255. alpha:1.];
+    
     [self.view addSubview:self.toolbarView];
     
     [self _setupCancelButton];

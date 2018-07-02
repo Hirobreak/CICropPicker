@@ -444,6 +444,7 @@
 				41E8E0891E92EC320046CDC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41E8E08A1E92EC320046CDC0 /* Build configuration list for PBXNativeTarget "CICropPickerTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +453,7 @@
 				41E8E08C1E92EC320046CDC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
