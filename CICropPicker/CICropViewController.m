@@ -71,8 +71,13 @@
 #pragma mark - Private Methods
 
 - (void)_setupCropView{
+    float paddingBottom = 0;
+    if(@available(iOS 11, *)){
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        paddingBottom = window.safeAreaInsets.bottom;
+    }
     
-    float height = [[UIScreen mainScreen] bounds].size.height - TOOLBAR_HEIGHT + [[UIScreen mainScreen] bounds].origin.y;
+    float height = [[UIScreen mainScreen] bounds].size.height - TOOLBAR_HEIGHT - paddingBottom + [[UIScreen mainScreen] bounds].origin.y;
 
     self.imageCropView = [[CICropImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
     self.imageCropView.modeImagePicker = self.modeImagePicker;
@@ -116,13 +121,13 @@
     [self.toolbarView addSubview:self.cancelButton];
     [self.toolbarView addSubview:self.useButton];
     
-    if (self.modeImagePicker == CIEditionImageMode){
+    /*if (self.modeImagePicker == CIEditionImageMode){
         [self _setupTrashButton];
         [self _setupCropButton];
         
         [self.toolbarView addSubview:self.trashButton];
         [self.toolbarView addSubview:self.cropButton];
-    }
+    }*/
 }
 
 

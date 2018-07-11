@@ -53,7 +53,6 @@
 }
 
 -(id)initWithFrame:(CGRect)frame andInitialContentSize:(CGSize)contentSize borderX:(float)dx borderY:(float)dy {
-    
     self = [super initWithFrame:frame];
     if (self) {
         _initialContentSize = contentSize;
